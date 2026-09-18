@@ -1296,6 +1296,34 @@ footer p {
         background-attachment: scroll;
     }
 }
+.payment-section {
+    margin-top: 25px;
+}
+
+.payment-option {
+    display: flex;
+    align-items: center;
+    width: 300px;
+    padding: 12px 18px;
+    margin-bottom: 12px;
+
+    border: 1px solid #ddd1c0;
+    border-radius: 10px;
+
+    cursor: pointer;
+    color: #000000;
+    background: #ffffff;
+}
+
+.payment-option:hover {
+    border-color: #b7893c;
+    background: #f5ead7;
+}
+
+.payment-option input {
+    margin-right: 10px;
+    accent-color: #000000;
+}
 
 
 .payment-section {
@@ -1317,7 +1345,7 @@ footer p {
 
 .payment-options {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(1, 2fr);
     gap: 18px;
 }
 
