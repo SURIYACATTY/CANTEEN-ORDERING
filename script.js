@@ -166,15 +166,13 @@ function addFood(name, price, button) {
     }
 
     saveData();
-    updateCart();
 
-    if (button) {
-        var oldText = button.innerHTML;
-        button.innerHTML = "✓ Added";
+    var selectedItem = foodItems.find(function(item) {
+        return item.name === name;
+    });
 
-        setTimeout(function() {
-            button.innerHTML = oldText;
-        }, 1000);
+    if (button && selectedItem) {
+        button.textContent = "Add (" + selectedItem.quantity + ")";
     }
 }
 
