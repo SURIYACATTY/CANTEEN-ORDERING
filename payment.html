@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Payment</title>
+
+    <style>
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #f8f7f3;
+            font-family: Arial, sans-serif;
+        }
+
+        .payment-box {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.12);
+        }
+
+        .payment-box h2 {
+            margin-bottom: 15px;
+        }
+
+        .payment-box button {
+            padding: 14px 30px;
+            border: none;
+            border-radius: 10px;
+            background: #7b4b2a;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="payment-box">
+        <h2>Payment Processing</h2>
+        <p>Click the button to continue</p>
+
+        <button onclick="openQR()">Continue</button>
+    </div>
+
+    <script>
+        function openQR() {
+            window.location.href = "qr.html";
+        }
+    </script>
+
+</body>
+</html>

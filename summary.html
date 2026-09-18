@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Smart Canteen - My Booking</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        .summary-page {
+            padding: 50px 6%;
+            background: #f6f7fb;
+            min-height: 80vh;
+        }
+
+        .summary-title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .summary-container {
+            max-width: 850px;
+            margin: auto;
+        }
+
+        .summary-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd1c0;
+        }
+
+        .summary-card h2 {
+            margin-bottom: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-row:last-child {
+            border-bottom: none;
+        }
+
+        .summary-food-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .summary-food-info {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .summary-food-name {
+            font-weight: bold;
+        }
+
+        .summary-food-quantity {
+            color: #777;
+            font-size: 14px;
+        }
+
+        .summary-food-price {
+            font-weight: bold;
+            color: #b7893c;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 15px 0;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .payment-section {
+            margin-top: 25px;
+        }
+
+        .payment-option {
+            border: 1px solid #ddd1c0;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .payment-option:hover {
+            border-color: #b7893c;
+            background: #f5ead7;
+        }
+
+        .payment-option input {
+            margin-right: 10px;
+        }
+
+        .pay-btn {
+            width: 100%;
+            margin-top: 20px;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            background: #b7893c;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .pay-btn:hover {
+            background: #956f2e;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #777;
+            padding: 20px;
+        }
+
+        .grand-total-card {
+            border: 2px solid #b7893c;
+        }
+    </style>
+</head>
+
+<body>
+
+<header class="navbar">
+
+    <div class="logo">🍽 SmartCanteen</div>
+
+    <nav>
+        <a href="index.html">Home</a>
+        <a href="reservation.html">Reserve Table</a>
+        <a href="menu.html">Menu</a>
+        <a href="summary.html" class="active">My Booking</a>
+    </nav>
+
+    <button class="login-btn" onclick="showLogin()">Login</button>
+
+</header>
+
+
+<main class="summary-page">
+
+    <div class="summary-title">
+        <h1>My Booking</h1>
+        <p>Review your table and food selection</p>
+    </div>
+
+
+    <div class="summary-container">
+
+        <div class="summary-card">
+
+            <h2>Reservation Details</h2>
+
+            <div class="summary-row">
+                <span>Booking Type</span>
+                <strong id="summaryBookingType">Normal</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Table</span>
+                <strong id="summaryTable">Not Selected</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Table Charge</span>
+                <strong id="summaryTableCharge">₹0</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Date</span>
+                <strong id="summaryDate">Not Selected</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Time</span>
+                <strong id="summaryTime">Not Selected</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Guests</span>
+                <strong id="summaryGuests">1</strong>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <h2>Selected Food</h2>
+
+            <div id="selectedFood">
+
+                <div class="empty-message">
+                    No food items selected.
+                </div>
+
+            </div>
+
+            <div class="total-row">
+                <span>Food Total</span>
+                <span id="summaryFoodTotal">₹0</span>
+            </div>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <h2>Payment</h2>
+
+            <div class="payment-section">
+
+                <label class="payment-option">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="UPI">
+
+                    GPay / UPI
+
+                </label>
+
+
+                <label class="payment-option">
+
+                    <input
+                        type="radio"
+                        name="payment"
+                        value="Card">
+
+                    Debit / Credit Card
+
+                </label>
+
+            </div>
+
+        </div>
+
+
+        <div class="summary-card grand-total-card">
+
+            <div class="total-row">
+
+                <span>Grand Total</span>
+
+                <span id="summaryGrandTotal">₹0</span>
+
+            </div>
+
+            <button
+                class="pay-btn"
+                type="button"
+                onclick="makePayment()">
+
+                Proceed to Payment
+
+            </button>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<footer>
+
+    <p>© 2026 Smart Canteen. All rights reserved.</p>
+
+</footer>
+
+
+<script src="script.js"></script>
+
+<script>
+function makePayment() {
+    var selectedPayment = document.querySelector('input[name="payment"]:checked');
+
+    if (!selectedPayment) {
+        alert("Please select a payment method");
+        return;
+    }
+
+    var totalText = document.getElementById("summaryGrandTotal").innerText;
+    var total = totalText.replace(/[₹,]/g, "").trim();
+
+    if (!total || parseFloat(total) <= 0) {
+        alert("Invalid payment amount");
+        return;
+    }
+
+    localStorage.setItem("totalAmount", total);
+    localStorage.setItem("paymentAmount", total);
+    localStorage.setItem("selectedPaymentMethod", selectedPayment.value);
+
+    if (selectedPayment.value === "UPI") {
+        window.location.href = "qr.html";
+    } else {
+        alert("Card payment can be added separately.");
+    }
+}
+</script>
+
+</body>
+</html>
